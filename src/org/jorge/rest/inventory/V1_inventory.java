@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.codehaus.jettison.json.JSONArray;
 import org.jorge.dao.MySQLRest;
@@ -19,15 +20,17 @@ public class V1_inventory {
 	@Path("/database")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public String returnAllPersons() throws Exception{
+	public Response returnAllPersons() throws Exception{
 	PreparedStatement query = null;
 	String returnString = null;
 	Connection conn = null;
+	Response response =  null;
 	
 	try{
 		conn = MySQLRest.getMySQLConn().getConnection();
 		query = conn.prepareStatement("select * from person");
 		ResultSet rs = query.executeQuery();
+		
 		
 		ToJSON converter =  new ToJSON();
 		JSONArray json = new JSONArray();
@@ -35,6 +38,7 @@ public class V1_inventory {
 		json = converter.toJSONArray(rs);
 		query.close();
 		returnString = json.toString();
+		response = Response.ok(returnString).build();
 		
 		
 	}catch(Exception e){
@@ -44,7 +48,7 @@ public class V1_inventory {
 		if (conn != null) query.close();
 	}
 	
-	return returnString;
+	return response;
 	
 
 	}
