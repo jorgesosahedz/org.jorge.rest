@@ -1,5 +1,7 @@
 package org.jorge.dao;
 
+import java.sql.Connection;
+
 import javax.naming.*;
 import javax.sql.*;
 
@@ -22,4 +24,17 @@ public class MySQLRest {
 			
 			return MySQLRest;
 		}
+		
+		protected static Connection mysqlPersonsConnection(){
+			Connection conn = null;
+			try{
+				conn = MySQLRest.getConnection();
+				return conn;
+			 }catch(Exception e){
+				 e.printStackTrace();
+			 }
+			
+			return conn;
+		}
+		
 }
