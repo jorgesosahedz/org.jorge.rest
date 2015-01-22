@@ -47,10 +47,13 @@ public class V2_inventory {
 
 	}
 	
-	@Path("/{id}")
+	@Path("/{id}/{name}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response returnID(@PathParam("id") String id) throws Exception{
+	public Response returnID(
+			@PathParam("id") String id,
+			@PathParam("name") String name) 
+					throws Exception{
 	
 	String returnString = null;	
 	JSONArray json = null;
@@ -61,7 +64,7 @@ public class V2_inventory {
 			return Response.status(400).entity("Error. Specify an ID").build();
 		}
 		Schema dao =  new Schema();
-		json = dao.returnAllPersons(id);
+		json = dao.returnByIdName(id, name);
 		returnString = json.toString();
 		
 	}catch(Exception e){

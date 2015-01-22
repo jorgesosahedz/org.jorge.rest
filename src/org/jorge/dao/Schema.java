@@ -34,4 +34,31 @@ public class Schema {
 		
 		return json;
 	}
+	
+	
+	public JSONArray returnByIdName(@QueryParam("id") String id, @QueryParam("name") String name) throws Exception{
+		PreparedStatement query = null;
+		Connection conn = null;		
+		ToJSON converter =  new ToJSON();
+		JSONArray json = new JSONArray();
+		
+		try{
+			conn = MySQLRest.getMySQLConn().getConnection();
+			query = conn.prepareStatement("select id, name, lastname, age, birthday from person where id = ? and name = ?");
+			query.setString(1, id);
+			query.setString(2, name);
+			ResultSet rs = query.executeQuery();			
+			json = converter.toJSONArray(rs);
+			query.close();			
+			
+		}catch(SQLException e){
+			e.printStackTrace();	
+			return json;
+		}
+		finally{
+			if (conn != null) query.close();
+		}
+		
+		return json;
+	}
 }
