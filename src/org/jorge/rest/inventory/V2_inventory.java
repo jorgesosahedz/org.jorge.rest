@@ -114,7 +114,7 @@ public class V2_inventory {
 	@Consumes({MediaType.APPLICATION_FORM_URLENCODED,MediaType.APPLICATION_JSON})
 	//@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response addPcParts(String incomingData) throws Exception {
+	public Response inserIntoPerson(String incomingData) throws Exception {
 		
 		String returnString = null;
 		//JSONArray jsonArray = new JSONArray(); //not needed
