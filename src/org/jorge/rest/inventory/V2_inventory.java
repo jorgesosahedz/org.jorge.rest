@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -45,5 +46,33 @@ public class V2_inventory {
 	
 
 	}
+	
+	@Path("/{id}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response returnID(@PathParam("id") String id) throws Exception{
+	
+	String returnString = null;	
+	JSONArray json = null;
+	
+	try{
+		
+		if (id == null){
+			return Response.status(400).entity("Error. Specify an ID").build();
+		}
+		Schema dao =  new Schema();
+		json = dao.returnAllPersons(id);
+		returnString = json.toString();
+		
+	}catch(Exception e){
+		e.printStackTrace();	
+		return Response.status(500).entity("Error. Not able to process request").build();
+	}	
+	
+	return Response.ok(returnString).build();
+	
+
+	}
+
 
 }
