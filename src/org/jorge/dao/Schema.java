@@ -48,7 +48,7 @@ public class Schema {
 
 		} catch(Exception e) {
 			e.printStackTrace();
-			return 500; //if a error occurs, return a 500
+			return 406; //if a error occurs, return a 500
 		}
 		finally {
 			if (conn != null) conn.close();

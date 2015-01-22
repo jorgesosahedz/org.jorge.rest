@@ -76,6 +76,12 @@ $(document).ready(function() {
 					$('#div_ajaxResponse').text( data[0].MSG );
 				}
 			},
+			error: function(data) { 
+				//console.log(data);
+				if(data[0].HTTP_CODE == 406) {
+					$('#div_ajaxResponse').text( data[0].MSG );
+				}
+			},
 			complete: function(XMLHttpRequest) {
 				//console.log( XMLHttpRequest.getAllResponseHeaders() );
 			}, 

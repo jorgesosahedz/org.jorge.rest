@@ -1,9 +1,5 @@
 package org.jorge.rest.inventory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -16,9 +12,9 @@ import javax.ws.rs.core.Response;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jettison.json.JSONArray;
-import org.jorge.dao.MySQLRest;
+
 import org.jorge.dao.Schema;
-import org.jorge.util.ToJSON;
+
 
 
 @Path("/v2/inventory")
