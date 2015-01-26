@@ -17,7 +17,7 @@ import org.jorge.util.ToJSON;
 public class V1_inventory {
 	
 	
-	@Path("/database")
+	//@Path("/database")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response returnAllPersons() throws Exception{
@@ -28,7 +28,7 @@ public class V1_inventory {
 	
 	try{
 		conn = MySQLRest.getMySQLConn().getConnection();
-		query = conn.prepareStatement("select * from person");
+		query = conn.prepareStatement("select id,name,lastname,age,birthday from person");
 		ResultSet rs = query.executeQuery();
 		
 		
