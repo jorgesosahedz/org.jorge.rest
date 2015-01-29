@@ -1,6 +1,7 @@
 package org.jorge.rest.status;
 
 import javax.ws.rs.*;
+
 import javax.ws.rs.core.*;
 import java.sql.*;
 import org.jorge.dao.*;
@@ -9,6 +10,10 @@ import org.jorge.dao.*;
  * @author jesus.sosa
  *
  */
+
+import javax.ws.rs.core.MediaType;
+
+
 @Path("/v1/status")
 public class V1_status {
 	
@@ -26,6 +31,7 @@ public class V1_status {
 	public String returnVersion(){
 		return "<p>Version:"+ver+"</p>";
 	}
+
 	
 	
 	@Path("/database")
@@ -61,6 +67,7 @@ public class V1_status {
 		
 		return returnString;
 	}
+
 
 
 }
